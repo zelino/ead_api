@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Module;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('lessons', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignIdFor('module_id')->references('id')->on('modules');
+            $table->foreignIdFor(Module::class)->references('id')->on('modules');
             $table->string('name')->unique();
             $table->string('url')->unique();
             $table->string('video');
